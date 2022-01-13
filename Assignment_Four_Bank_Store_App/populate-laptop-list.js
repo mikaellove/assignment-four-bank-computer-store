@@ -1,33 +1,74 @@
-const laptopsElement = document.getElementById("laptops");
+const laptopsElement = document.querySelector("#laptops")
+const imageDivElement = document.getElementById("image-div");
+const computerDescriptionElement = document.getElementById("description");
+const computerSpecsDivElement = document.getElementById("computer-specs-div");
+laptopsElement.addEventListener("change",() => { ChangeImage("https://noroff-komputer-store-api.herokuapp.com/"+computerData[laptopsElement.selectedIndex].image) });
+let computerData = [];
+laptopsElement.selectedIndex = 0;
 
-
-
-async function loadLaptops()
+async function loadComputerInfo()
 {
     const response = await fetch("https://noroff-komputer-store-api.herokuapp.com/computers");
 
     const laptops = await response.json();
 
-    console.log(laptops);
-    laptops.forEach(element => {
-        console.log(element.title);
-    });
     
+    computerData = laptops;
+    
+    showImage("https://noroff-komputer-store-api.herokuapp.com/"+laptops[0].image);
+
+    computerDescriptionElement.innerHTML = "<b>" + laptops[0].description + "</b>";
+
+    laptops[0].specs.forEach((spec) =>
+    {
+        console.log(spec);
+        showComputerSpecifications(spec);
+    })
 }
 
-let laptops = [];
-function la()
+function loadLaptops()
 {
     fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
-        .then((response) => { response.json() })
-        .then((data) => 
+        .then((response) => { return response.json() })
+        .then((computers) => 
         {
-            
-            laptops = data;
-            console.log(laptops);
-            
+            computerData = computers;
+            computers.forEach((computer) => 
+            {
+                const computerElement = document.createElement("option");
+                computerElement.value = computer.id;
+                computerElement.appendChild(document.createTextNode(computer.title));
+                laptopsElement.appendChild(computerElement);
+            })
         })
 }
 
+function ChangeImage(src)
+{
+    document.getElementById("computer-image").remove();
+    showImage(src);
+}
+
+function showImage(src,alt) {
+    let img = document.createElement("img");
+    img.height = 300;
+    img.width = 300;
+    img.src = src;
+    img.alt = alt;
+    img.id = "computer-image"
+    // This next line will just add it to the <body> tag
+    imageDivElement.appendChild(img);
+}
+
+function showComputerSpecifications(txt)
+{
+    let div = document.createElement("div");
+    div.innerHTML = txt;
+    div.style.paddingBottom = "7px"
+    
+    computerSpecsDivElement.appendChild(div);
+}
+
 loadLaptops();
-la();
+loadComputerInfo();
+//showImage("https://noroff-komputer-store-api.herokuapp.com/computers"+computerData[laptopsElement.selectedIndex].image,"hej");
