@@ -14,10 +14,6 @@ loanButtonElement.addEventListener("click", () => { getBankLoan(); });
 let bankBalance = 0;
 let outstandingLoan = 0;
 let haveActiveLoan = false;
-let amountOfLoans = 0;
-
-
-let isComputerBought = false;
 
 
 function increaseEarnedMoney()
@@ -29,13 +25,14 @@ function increaseEarnedMoney()
 
 function bankEarnedMoney()
 {
-    if(outstandingLoan > 0)
+    if(haveActiveLoan)
     {
         let loanDeduction = earnedMoney * 0.1;
         outstandingLoan -= loanDeduction;
         bankBalance += earnedMoney - loanDeduction;
 
         earnedMoney = 0;
+        if(outstandingLoan === 0) haveActiveLoan = false;
         UpdateElementsInnerHTML();
     }
     else
@@ -49,7 +46,7 @@ function bankEarnedMoney()
 
 function payLoan()
 {
-    if(outstandingLoan > 0)
+    if(haveActiveLoan)
     {
         if(earnedMoney < outstandingLoan)
         {
@@ -60,9 +57,11 @@ function payLoan()
         else
         {
             let earnedMoneyAfterLoanPayment = earnedMoney - outstandingLoan;
-            earnedMoney = earnedMoneyAfterLoanPayment;
+            bankBalance += earnedMoneyAfterLoanPayment;
             outstandingLoan = 0;
+            haveActiveLoan = false;
 
+            earnedMoney = 0;
             UpdateElementsInnerHTML();
         }
 
@@ -88,7 +87,6 @@ function getBankLoan()
     bankBalance += parseInt(borrowAmount);
     outstandingLoan += parseInt(borrowAmount);
     haveActiveLoan = true;
-    amountOfLoans++;
 
     UpdateElementsInnerHTML();
 }
@@ -101,11 +99,6 @@ function isLoanApproved(bankBalance, loanAmount)
         return false;
     }
     else if(haveActiveLoan)
-    {
-        alert("Loan not approved");
-        return false;
-    }
-    else if(!isComputerBought && amountOfLoans >= 1)
     {
         alert("Loan not approved");
         return false;
