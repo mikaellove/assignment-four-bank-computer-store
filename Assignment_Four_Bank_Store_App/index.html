@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h1>Bank</h1>
+            <table>
+                <tbody>
+                    <td>Outstanding loan: </td>
+                    <td id="outstanding-loan"></td>
+                </tbody>
+            </table>
+
+            <table>
+                <tbody>
+                    <td>Balance: </td>
+                    <td id="balance"></td>
+                </tbody>
+            </table>
+            <button id="loan-button">Get Loan</button>
+        </div>
+
+        <div class="grid-item">
+            <h1>Work</h1>
+            <table>
+                <tbody>
+                    <td>Money earned:</td>
+                    <td id="earned-money"></td>
+                </tbody>
+            </table>
+            <button id="bank-button">Bank Money</button>
+            <button id="work-button">Go To Work</button>
+            <button id="pay-loan">Pay loan</button>
+        </div>
+        <script src="app.js"></script>
+
+        <div class="grid-item">
+            <h1>Availabe laptops</h1>
+            <select name="laptops" id="laptops"></select>
+        </div>
+    </div>
+
+    <script src="populate-laptop-list.js" defer></script>
+</body>
+</html>
