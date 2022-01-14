@@ -3,6 +3,7 @@ const imageDivElement = document.getElementById("image-div");
 const computerDescriptionElement = document.getElementById("description");
 const computerSpecsDivElement = document.getElementById("computer-specs-div");
 const priceElement = document.getElementById("computer-price");
+const buyButtonElement = document.getElementById("buy-computer-button");
 laptopsElement.addEventListener("change",() => { 
     ChangeImage("https://noroff-komputer-store-api.herokuapp.com/"+computerData[laptopsElement.selectedIndex].image);
     setComputerDescription(computerData,laptopsElement.selectedIndex);
@@ -100,5 +101,6 @@ function clearDivArray()
         div.remove();
     })
 }
+
 loadLaptops();
 loadComputerInfo();

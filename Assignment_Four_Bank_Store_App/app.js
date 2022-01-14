@@ -15,7 +15,6 @@ let bankBalance = 0;
 let outstandingLoan = 0;
 let haveActiveLoan = false;
 
-
 function increaseEarnedMoney()
 {
     earnedMoney += 100;
@@ -72,12 +71,6 @@ function payLoan()
     }
 }
 
-
-
-
-
-
-
 function getBankLoan()
 {
     let borrowAmount = prompt("Enter loan amount");
@@ -115,3 +108,133 @@ function UpdateElementsInnerHTML()
     outstandingLoanElement.innerHTML = outstandingLoan;
     earnedMoneyElement.innerHTML = earnedMoney;
 }
+
+const computerSelectEle = document.querySelector("#computer-selector")
+const imageDivElement = document.getElementById("image-div");
+const computerDescriptionElement = document.getElementById("description");
+const computerSpecsDivElement = document.getElementById("computer-specs-div");
+const priceElement = document.getElementById("computer-price");
+const buyButtonElement = document.getElementById("buy-computer-button");
+
+buyButtonElement.addEventListener("click", () => {
+    buyComputer();
+})
+
+computerSelectEle.addEventListener("change",() => { 
+    clearComputerSpecsDivArray();
+    displayComputerInfo(computerDataCache,computerSelectEle.selectedIndex);
+
+    chosenComputerName = computerSelectEle[computerSelectEle.selectedIndex].textContent;
+});
+
+let computerDataCache = [];
+computerSelectEle.selectedIndex = 0;
+let chosenComputerPrice = 0;
+let chosenComputerName = "";
+let computerSpecsDivArray = [];
+
+async function fetchAndDisplayData()
+{
+    const response = await fetch("https://noroff-komputer-store-api.herokuapp.com/computers");
+
+    const computerData = await response.json();
+    
+    computerDataCache = computerData;
+
+    createComputerDropdownList(computerData);
+    
+    displayComputerInfo(computerDataCache,computerSelectEle.selectedIndex);
+}
+
+function displayComputerInfo(computerData,index)
+{
+    displayImage(computerData,index);
+    displayComputerDescription(computerData,index);
+    displayComputerPrice(computerData,index);
+
+    computerData[index].specs.forEach((spec) =>
+    {
+        configureAndDisplayComputerSpecs(spec);
+    })
+}
+
+function displayComputerDescription(data,index)
+{
+    computerDescriptionElement.innerHTML = "<b>" + data[index].description + "</b>";
+}
+
+function displayComputerPrice(data,index)
+{
+    priceElement.innerHTML = "Price: " + data[index].price;
+    chosenComputerPrice = data[index].price;
+}
+
+function displayImage(data,index)
+{
+    const computerImg = document.getElementById("computer-image");
+    if(computerImg) computerImg.remove();
+
+    configureAndCreateImage("https://noroff-komputer-store-api.herokuapp.com/" + data[index].image);
+}
+
+function createComputerDropdownList(data)
+{
+        data.forEach((computer) => 
+            {
+                const computerElement = document.createElement("option");
+                computerElement.value = computer.id;
+                computerElement.appendChild(document.createTextNode(computer.title));
+                computerSelectEle.appendChild(computerElement);
+                chosenComputerName = computerSelectEle[computerSelectEle.selectedIndex].textContent;
+            })
+}
+    
+    function configureAndCreateImage(src) {
+        let img = document.createElement("img");
+        img.height = 300;
+        img.width = 300;
+        img.src = src;
+        img.id = "computer-image"
+       
+        img.onerror = () => 
+        {
+            img.alt = "Computer missing image!"
+            return;
+        }
+
+        imageDivElement.appendChild(img);
+    }
+    
+    function configureAndDisplayComputerSpecs(txt)
+    {
+        let div = document.createElement("div");
+        div.innerHTML = txt;
+        div.style.paddingBottom = "7px"
+        
+        computerSpecsDivArray.push(div);
+        computerSpecsDivElement.appendChild(div);
+    }
+
+    function clearComputerSpecsDivArray()
+    {
+        computerSpecsDivArray.forEach((div) => {
+            div.remove();
+        })
+    }
+    
+    function buyComputer()
+    {
+        if(bankBalance >= chosenComputerPrice)
+        {
+            alert("You have bought " + chosenComputerName);
+            bankBalance -= chosenComputerPrice;
+
+            UpdateElementsInnerHTML();
+        }
+        else
+        {
+            alert("You cant afford this computer.");
+        }
+    }
+
+    fetchAndDisplayData();
