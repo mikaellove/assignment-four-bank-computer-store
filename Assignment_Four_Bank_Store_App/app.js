@@ -3,7 +3,7 @@ const workButtonElement = document.getElementById("work-button");
 const bankButtonElement = document.getElementById("bank-button");
 const payLoanButtonElement = document.getElementById("pay-loan");
 payLoanButtonElement.addEventListener("click", () => { payLoan(); });
-workButtonElement.addEventListener("click", () => { increaseEarnedMoney(); });
+workButtonElement.addEventListener("click", () => { increaseEarnedMoney(100); });
 bankButtonElement.addEventListener("click", () => { bankEarnedMoney(); });
 let earnedMoney = 0;
 
@@ -15,9 +15,9 @@ let bankBalance = 0;
 let outstandingLoan = 0;
 let haveActiveLoan = false;
 
-function increaseEarnedMoney()
+function increaseEarnedMoney(amount)
 {
-    earnedMoney += 100;
+    earnedMoney += amount;
 
     UpdateElementsInnerHTML();
 }
@@ -108,6 +108,7 @@ function UpdateElementsInnerHTML()
     outstandingLoanElement.innerHTML = outstandingLoan;
     earnedMoneyElement.innerHTML = earnedMoney;
 }
+
 
 const computerSelectEle = document.querySelector("#computer-selector")
 const imageDivElement = document.getElementById("image-div");
@@ -237,4 +238,4 @@ function createComputerDropdownList(data)
         }
     }
 
-    fetchAndDisplayData();
+fetchAndDisplayData();
