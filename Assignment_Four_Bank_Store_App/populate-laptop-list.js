@@ -2,7 +2,18 @@ const laptopsElement = document.querySelector("#laptops")
 const imageDivElement = document.getElementById("image-div");
 const computerDescriptionElement = document.getElementById("description");
 const computerSpecsDivElement = document.getElementById("computer-specs-div");
-laptopsElement.addEventListener("change",() => { ChangeImage("https://noroff-komputer-store-api.herokuapp.com/"+computerData[laptopsElement.selectedIndex].image) });
+const priceElement = document.getElementById("computer-price");
+laptopsElement.addEventListener("change",() => { 
+    ChangeImage("https://noroff-komputer-store-api.herokuapp.com/"+computerData[laptopsElement.selectedIndex].image);
+    setComputerDescription(computerData,laptopsElement.selectedIndex);
+    setComputerPrice(computerData,laptopsElement.selectedIndex);
+    clearDivArray();
+    computerData[laptopsElement.selectedIndex].specs.forEach((spec) => 
+    { 
+        showComputerSpecifications(spec);
+    });
+});
+
 let computerData = [];
 laptopsElement.selectedIndex = 0;
 
@@ -17,13 +28,27 @@ async function loadComputerInfo()
     
     showImage("https://noroff-komputer-store-api.herokuapp.com/"+laptops[0].image);
 
-    computerDescriptionElement.innerHTML = "<b>" + laptops[0].description + "</b>";
+    
+    setComputerPrice(laptops,0);
+    setComputerDescription(laptops,0);
+    
 
+    
     laptops[0].specs.forEach((spec) =>
     {
         console.log(spec);
         showComputerSpecifications(spec);
     })
+}
+
+function setComputerDescription(data,index)
+{
+    computerDescriptionElement.innerHTML = "<b>" + data[index].description + "</b>";
+}
+
+function setComputerPrice(data,index)
+{
+    priceElement.innerHTML = "Price: " + data[index].price;
 }
 
 function loadLaptops()
@@ -56,19 +81,24 @@ function showImage(src,alt) {
     img.src = src;
     img.alt = alt;
     img.id = "computer-image"
-    // This next line will just add it to the <body> tag
+
     imageDivElement.appendChild(img);
 }
-
+let divArray = [];
 function showComputerSpecifications(txt)
 {
     let div = document.createElement("div");
     div.innerHTML = txt;
     div.style.paddingBottom = "7px"
     
+    divArray.push(div);
     computerSpecsDivElement.appendChild(div);
 }
-
+function clearDivArray()
+{
+    divArray.forEach((div) => {
+        div.remove();
+    })
+}
 loadLaptops();
 loadComputerInfo();
-//showImage("https://noroff-komputer-store-api.herokuapp.com/computers"+computerData[laptopsElement.selectedIndex].image,"hej");
