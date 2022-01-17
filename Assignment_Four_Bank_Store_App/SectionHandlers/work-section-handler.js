@@ -5,6 +5,7 @@ export class WorkSection
         this.data = dataContainer;
 
         this.addButtonEvents();
+        this.UpdateElementsInnerHTML();
     }
 
     addButtonEvents()

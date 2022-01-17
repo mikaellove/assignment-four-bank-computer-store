@@ -1,4 +1,4 @@
-export class ComputerData
+export class ComputerDataHandler
 {
     constructor(dataContainer)
     {
