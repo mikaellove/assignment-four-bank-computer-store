@@ -1,11 +1,69 @@
-*{
-    margin: 2;
-    padding: 0;
+.container-1{
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.grid-container{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    background-color: #2196F3;
+.container-2{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-bank{
+    border: 10px hsl(0, 2%, 76%) solid;
+    border-radius: 8%;
+    padding: 50px;
+    background-color: rgb(236, 233, 233);
+    flex: 1;
+}
+
+.box-work{
+    border: 10px hsl(0, 2%, 76%) solid;
+    border-radius: 8%;
+    padding: 50px;
+    background-color: rgb(236, 233, 233);
+    flex: 2;
+}
+
+.box-computers{
+    border: 10px hsl(0, 2%, 76%) solid;
+    border-radius: 8%;
+    padding: 50px;
+    background-color: rgb(236, 233, 233);
+    flex: 1;
+}
+
+.box-computer-image{
+    border: 10px hsl(0, 5%, 88%) solid;
+    border-radius: 8%;
+    padding: 50px;
+    background-color: rgb(245, 243, 243);
+    flex: 1;
+}
+
+.box-computer-info{
+    border: 10px hsl(0, 5%, 88%) solid;
+    border-radius: 8%;
+    padding: 50px;
+    background-color: rgb(245, 243, 243);
+    flex: 3;
+}
+
+.button{
     padding: 10px;
+    margin-right: 10px;
+    background-color: hsl(0, 13%, 92%) solid;
+
+    border-radius: 20%;
+    border-color: hsl(0, 0%, 81%) solid;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 #00000033;
+}
+
+.computer-list{
+    padding: 10px;
+    margin-right: 10px;
+    background-color: hsl(0, 13%, 92%) solid;
+
+    border-radius: 20%;
+    border-color: hsl(0, 0%, 81%) solid;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }

@@ -99,6 +99,7 @@ export class ComputerDataHandler
             {
                 const computerElement = document.createElement("option");
                 computerElement.value = computer.id;
+                computerElement.style.backgroundColor = "#ede8e8";
                 computerElement.appendChild(document.createTextNode(computer.title));
                 this.computerSelectEle.appendChild(computerElement);
                 this.chosenComputerName = this.computerSelectEle[this.computerSelectEle.selectedIndex].textContent;
@@ -107,9 +108,8 @@ export class ComputerDataHandler
 
     configureAndDisplayComputerSpecs(txt)
     {
-        let div = document.createElement("div");
+        let div = document.createElement("p");
         div.innerHTML = txt;
-        div.style.paddingBottom = "7px"
         
         this.computerSpecsDivArray.push(div);
         this.computerSpecsDivElement.appendChild(div);

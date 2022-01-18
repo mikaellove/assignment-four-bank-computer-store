@@ -9,6 +9,7 @@ export class BankSection
 
     addButtonEvents()
     {
+        this.payLoanButton = document.getElementById("pay-loan");
         this.bankBalanceElement = document.getElementById("balance");
         this.outstandingLoanElement = document.getElementById("outstanding-loan");
         this.loanButtonElement = document.getElementById("loan-button");
@@ -24,13 +25,14 @@ export class BankSection
     getBankLoan()
     {
         let amountToLoan = prompt("Enter loan amount");
+        if(amountToLoan === null) return;
 
         if(!this.isLoanApproved(this.data.bankBalance,amountToLoan)) return;
         
         this.data.bankBalance += parseInt(amountToLoan);
         this.data.outstandingLoan += parseInt(amountToLoan);
         this.data.haveActiveLoan = true;
-
+        
         this.updateElementsInnerHTML();
     }
 
@@ -48,6 +50,7 @@ export class BankSection
         }
         else
         {
+            this.payLoanButton.style.display = "";
             return true;
         }
     }

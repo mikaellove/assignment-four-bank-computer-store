@@ -7,3 +7,6 @@ const dataContainer = new DataContainer();
 const workSection = new WorkSection(dataContainer);
 const bankSection = new BankSection(dataContainer);
 const computerData = new ComputerDataHandler(dataContainer);
+
+workSection.UpdateElementsInnerHTML();
+workSection.payLoanButtonElement.style.display = "none";

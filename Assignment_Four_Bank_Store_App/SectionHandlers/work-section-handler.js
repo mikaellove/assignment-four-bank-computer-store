@@ -5,7 +5,6 @@ export class WorkSection
         this.data = dataContainer;
 
         this.addButtonEvents();
-        this.UpdateElementsInnerHTML();
     }
 
     addButtonEvents()
@@ -71,6 +70,7 @@ export class WorkSection
                 let earnedMoneyAfterLoanPayment = this.data.earnedMoney - this.data.outstandingLoan;
                 this.data.bankBalance += earnedMoneyAfterLoanPayment;
                 this.data.outstandingLoan = 0;
+                this.payLoanButtonElement.style.display = "none";
                 this.data.haveActiveLoan = false;
 
                 this.data.earnedMoney = 0;

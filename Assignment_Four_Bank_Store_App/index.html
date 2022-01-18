@@ -8,65 +8,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="grid-container">
-        <div class="grid-item">
-            <h1>Bank</h1>
-            <table>
-                <tbody>
-                    <td>Outstanding loan: </td>
-                    <td id="outstanding-loan"></td>
-                </tbody>
-            </table>
-
-            <table>
-                <tbody>
-                    <td>Balance: </td>
-                    <td id="balance"></td>
-                </tbody>
-            </table>
-            <button id="loan-button">Get Loan</button>
+    <div class="container-1">
+        <div class="box-bank">
+            <div class="box-bank-div">
+                <h2>Bank</h2>
+                <span>Balance: </span>
+                <span id="balance"></span>
+                <br>
+                <span>Outstanding loan: </span>
+                <span id="outstanding-loan"></span>
+                <br>
+                <br>
+                <button id="loan-button" class="button">Apply for a loan</button>
+            </div>
         </div>
 
-        <div class="grid-item">
-            <h1>Work</h1>
-            <table>
-                <tbody>
-                    <td>Money earned:</td>
-                    <td id="earned-money"></td>
-                </tbody>
-            </table>
-            <button id="bank-button">Bank Money</button>
-            <button id="work-button">Go To Work</button>
-            <button id="pay-loan">Pay loan</button>
+        <div class="box-work">
+            <h2>Work</h2>
+            <br>
+            <span>Money earned: </span>
+            <span id="earned-money"></span>
+            <br>
+            <br>
+            <button id="bank-button" class="button">Bank money</button>
+            <button id="work-button" class="button">Work</button>
+            <button id="pay-loan" class="button">Pay loan</button>
         </div>
-        
-        <div class="grid-item">
-            <h1>Availabe laptops</h1>
-            <select id="computer-selector"></select>
-        </div>
-        
-        <div id="image-div"></div>
-        
-        <div id="computer-specs-div">
-            <table>
-                <thead>
-                    <button id="buy-computer-button">Buy computer</button>
-                    <h3 id="computer-price"></h3>
-                </thead>
-                <tbody>
-                    <td id="description"><b>description</b></td>
-                </tbody>
-            </table>
-            
-            <table>
-                <tbody>
-                    <td><b>Specs: </b></td>
-                </tbody>
-            </table>
+
+        <div class="box-computers">
+            <h2>Laptops</h2>
+            <br>
+            <span>Availabe computers</span>
+            <br>
+            <br>
+            <select class="computer-list"    id="computer-selector"></select>
         </div>
     </div>
-    
-    <script src="main.js" type="module" defer></script>
-    
+
+    <div class="container-2">
+        <div class="box-computer-image" id="image-div">
+
+        </div>
+
+        <div id="computer-specs-div" class="box-computer-info">
+            <button id="buy-computer-button" class="button">Buy computer</button>
+            <h3 id="computer-price"></h3>
+            <p id="description"><b>Description</b></p>
+            <p><b>Specs: </b></p>
+            
+        </div>
+    </div>
+
+<script src="main.js" type="module"></script>
+
 </body>
 </html>
