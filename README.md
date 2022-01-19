@@ -1,29 +1,32 @@
-# Welcome to assignment-four-bank-computer-store 👋
+<h1 align="center">Welcome to assignment-four-bank-computer-store 👋</h1>
+<p>
+</p>
 
-> Bank simulator and computer store. You can work and earn money, deposit them to the bank, apply for a loan and buy a computer with the money you have deposited to the bank.   
+> Bank simulator and computer store. You can work and earn money, deposit money to the bank, apply for a loan and buy a computer with the money you have deposited to the bank.
+
+### 🏠 [Homepage](mikaellove.github.io/assignment-four-bank-computer-store/)
 
 ## Install
 
 ```sh
-Install LiveServer extension
+Install LiveServer extension in vs code.
 ```
 
 ## Usage
 
 ```sh
-Right click on the index.html file and open liveserver to run project.
+Right click on the index.html file and open liveserver to run project the project locally.
 ```
 
 ## Author
 
 👤 **Love Beling**
 
-* Github: [@mikaellove](https://github.com/mikaellove)
+* Github: [@lovemikael](https://github.com/lovemikael)
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
-
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
