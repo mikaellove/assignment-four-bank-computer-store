@@ -6,7 +6,7 @@
 
 ## Website
 ```sh
-[mikaellove.github.io/assignment-four-bank-computer-store/](mikaellove.github.io/assignment-four-bank-computer-store/)
+mikaellove.github.io/assignment-four-bank-computer-store/
 
 ```
 
