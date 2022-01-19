@@ -4,7 +4,11 @@
 
 > Bank simulator and computer store. You can work and earn money, deposit money to the bank, apply for a loan and buy a computer with the money you have deposited to the bank.
 
-### 🏠 [Homepage](mikaellove.github.io/assignment-four-bank-computer-store/)
+## Website
+```sh
+[mikaellove.github.io/assignment-four-bank-computer-store/](mikaellove.github.io/assignment-four-bank-computer-store/)
+
+```
 
 ## Install
 
