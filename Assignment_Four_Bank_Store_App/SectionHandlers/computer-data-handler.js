@@ -86,8 +86,8 @@ export class ComputerDataHandler
        
         img.onerror = () => 
         {
-            img.alt = "Computer missing image!"
-            return;
+            const srcWithoutFormat = src.substring(0,src.length - 4);
+            img.src = srcWithoutFormat + ".png";
         }
 
         this.imageDivElement.appendChild(img);

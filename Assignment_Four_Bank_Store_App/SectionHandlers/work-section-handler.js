@@ -18,7 +18,7 @@ export class WorkSection
 
         this.payLoanButtonElement.addEventListener("click", () => { this.payLoan(); });
         this.workButtonElement.addEventListener("click", () => { this.increaseEarnedMoney(100); });
-        this.bankButtonElement.addEventListener("click", () => { this.bankEarnedMoney(); });
+        this.bankButtonElement.addEventListener("click", () => { this.depositEarnedMoney(); });
     }
     UpdateElementsInnerHTML()
     {
@@ -34,26 +34,50 @@ export class WorkSection
         this.UpdateElementsInnerHTML();
     }
 
-    bankEarnedMoney()
+    depositEarnedMoney()
     {
         if(this.data.haveActiveLoan)
         {
-            let loanDeduction = this.data.earnedMoney * 0.1;
-            this.data.outstandingLoan -= loanDeduction;
-            this.data.bankBalance += this.data.earnedMoney - loanDeduction;
-
-            this.data.earnedMoney = 0;
-            if(this.data.outstandingLoan === 0) this.data.haveActiveLoan = false;
-            this.UpdateElementsInnerHTML();
+            this.bankEarnedMoneyWithDeduction();
         }
         else
         {   
-            this.data.bankBalance += this.data.earnedMoney;
-
-            this.data.earnedMoney = 0;
-            this.UpdateElementsInnerHTML();
+            this.bankEarnedMoney();
         }
     }
+
+    bankEarnedMoneyWithDeduction()
+    {
+        let loanDeduction = this.data.earnedMoney * 0.1;
+
+        if(loanDeduction > this.data.outstandingLoan)
+        {
+            loanDeduction -= this.data.outstandingLoan;
+            this.data.outstandingLoan = 0;
+        }
+        else
+        {
+            this.data.outstandingLoan -= loanDeduction;
+        }
+        
+        if(this.data.outstandingLoan === 0) 
+        {
+            this.data.haveActiveLoan = false;
+        }
+        
+        this.data.bankBalance += this.data.earnedMoney - loanDeduction;
+        this.data.earnedMoney = 0;
+        this.UpdateElementsInnerHTML();
+    }
+
+    bankEarnedMoney()
+    {
+        this.data.bankBalance += this.data.earnedMoney;
+
+        this.data.earnedMoney = 0;
+        this.UpdateElementsInnerHTML();
+    }
+
 
     payLoan()
     {
