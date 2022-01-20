@@ -1,5 +1,13 @@
+/**
+ * Handles fetching the computer data from the api and displays them on the UI. Handles the feature of buying a computer.
+ */
 export class ComputerDataHandler
 {
+    /**
+     * Gets the dom elements and listens on change and click event.
+     * @param {Object that contains all the current data values that is used through out the app} dataContainer 
+     * Also invokes the function fetchAndDisplayData().
+     */
     constructor(dataContainer)
     {
         this.data = dataContainer;
@@ -32,6 +40,9 @@ export class ComputerDataHandler
         this.fetchAndDisplayData();
     }
 
+    /**
+     * Fetches the data from the api and displays it to the computer section of the application.
+     */
     async fetchAndDisplayData()
     {
         const response = await fetch("https://noroff-komputer-store-api.herokuapp.com/computers");
@@ -44,7 +55,11 @@ export class ComputerDataHandler
         
         this.displayComputerInfo(this.computerDataCache,this.computerSelectEle.selectedIndex);
     }   
-
+    /**
+     * Displays the currently selected computers information
+     * @param {Contains all the computer data that was fetched from the api} computerData 
+     * @param {index of currenty selected computer} index 
+     */
     displayComputerInfo(computerData,index)
     {
         this.displayImage(computerData,index);
@@ -56,18 +71,30 @@ export class ComputerDataHandler
             this.configureAndDisplayComputerSpecs(spec);
         })
     }
-
+/**
+ * displays the description of the selected computer
+ * @param {contains the computer info data} data 
+ * @param {index of currently selected computer} index 
+ */
     displayComputerDescription(data,index)
     {
         this.computerDescriptionElement.innerHTML = "<b>" + data[index].description + "</b>";
     }
-
+/**
+ * displays the price of the selected computer
+ * @param {contains the computer info data} data 
+ * @param {index of currently selected computer} index 
+ */
     displayComputerPrice(data,index)
     {
         this.priceElement.innerHTML = "Price: " + data[index].price;
         this.chosenComputerPrice = data[index].price;
     }
-
+/**
+ * displays the image of the currently selected computer
+ * @param {contains the computer info data} data 
+ * @param {index of currently selected computer} index 
+ */
     displayImage(data,index)
     {
         const computerImg = document.getElementById("computer-image");
@@ -76,6 +103,11 @@ export class ComputerDataHandler
         this.configureAndCreateImage("https://noroff-komputer-store-api.herokuapp.com/" + data[index].image);
     }
 
+    /**
+     * creates a image element with the specific configurations.
+     * subscribes a anynymous method to the error event handler which then replaces the format to a png.
+     * @param {url for the image} src 
+     */
     configureAndCreateImage(src) 
     {
         let img = document.createElement("img");
@@ -105,7 +137,10 @@ export class ComputerDataHandler
                 this.chosenComputerName = this.computerSelectEle[this.computerSelectEle.selectedIndex].textContent;
             })
     }
-
+    /**
+     * Creates a paragraph element and displays the given text.
+     * @param {*} txt 
+     */
     configureAndDisplayComputerSpecs(txt)
     {
         let div = document.createElement("p");
@@ -115,13 +150,18 @@ export class ComputerDataHandler
         this.computerSpecsDivElement.appendChild(div);
     }
 
+    /**
+     * removes the list of currently viewed computer specifications
+     */
     clearComputerSpecsDivArray()
     {
         this.computerSpecsDivArray.forEach((div) => {
             div.remove();
         })
     }
-
+    /**
+     * Checks if the user can afford to buy a computer or not then performs that action.
+     */
     buyComputer()
     {
         if(this.data.bankBalance >= this.chosenComputerPrice)

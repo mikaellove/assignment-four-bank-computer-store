@@ -1,3 +1,6 @@
+/**
+ * Handles the work section of the application.
+ */
 export class WorkSection
 {
     constructor(dataContainer)
@@ -6,7 +9,9 @@ export class WorkSection
 
         this.addButtonEvents();
     }
-
+    /**
+     * Gets the DoM elements and listens to the different events.
+     */
     addButtonEvents()
     {
         this.bankBalanceElement = document.getElementById("balance");
@@ -27,13 +32,19 @@ export class WorkSection
         this.earnedMoneyElement.innerHTML = this.data.earnedMoney;
     }
 
+    /**
+     * increases earned money by given amount
+     * @param {amount of money to earn} amount 
+     */
     increaseEarnedMoney(amount)
     {
         this.data.earnedMoney += amount;
 
         this.UpdateElementsInnerHTML();
     }
-
+    /**
+     * Deposit earned money into the bank balance.
+     */
     depositEarnedMoney()
     {
         if(this.data.haveActiveLoan)
@@ -45,7 +56,9 @@ export class WorkSection
             this.bankEarnedMoney();
         }
     }
-
+    /**
+     * Deposits the users earned money with a 10% deduction that goes to paying the loan.
+     */
     bankEarnedMoneyWithDeduction()
     {
         let loanDeduction = this.data.earnedMoney * 0.1;
@@ -69,7 +82,9 @@ export class WorkSection
         this.data.earnedMoney = 0;
         this.UpdateElementsInnerHTML();
     }
-
+    /**
+     * Deposits the users earned money into the bank.
+     */
     bankEarnedMoney()
     {
         this.data.bankBalance += this.data.earnedMoney;
@@ -78,7 +93,10 @@ export class WorkSection
         this.UpdateElementsInnerHTML();
     }
 
-
+/**
+ * Pays the current outstanding loan.
+ * If the current loan is smaller then the users earned money then the money that is left after loan payment is put into the bank balance. 
+ */
     payLoan()
     {
         if(this.data.haveActiveLoan)

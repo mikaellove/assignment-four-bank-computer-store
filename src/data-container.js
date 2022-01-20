@@ -1,3 +1,6 @@
+/**
+ * Contains all the necessary data that is used by different classes in this application.
+ */
 export class DataContainer
 {
     constructor()

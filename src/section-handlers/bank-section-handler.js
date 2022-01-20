@@ -1,3 +1,6 @@
+/**
+ * Handles the bank section of the application.
+ */
 export class BankSection
 {
     constructor(dataContainer)
@@ -7,6 +10,10 @@ export class BankSection
         this.addButtonEvents();
     }
 
+    /**
+     * Gets the elements from the HTML
+     * Adds getBankLoan() to onClick event for loan button
+     */
     addButtonEvents()
     {
         this.payLoanButton = document.getElementById("pay-loan");
@@ -22,6 +29,13 @@ export class BankSection
         this.outstandingLoanElement.innerHTML = this.data.outstandingLoan;
     }
 
+    /**
+     * Here the amount to loan is inputed.
+     * Checks if the loan is approved or not.
+     * Then adds the given amount to bank balance and the outstanding loan.
+     * @returns nothing statement is for exiting method.
+     * 
+     */
     getBankLoan()
     {
         let amountToLoan = prompt("Enter loan amount");
@@ -35,7 +49,13 @@ export class BankSection
         
         this.updateElementsInnerHTML();
     }
-
+    
+    /**
+     * Decides if the loan is approved or not.
+     * @param {the current amount the user have deposited on the bank} bankBalance 
+     * @param {the amount the user is about to loan} loanAmount 
+     * @returns 
+     */
     isLoanApproved(bankBalance, loanAmount)
     {
         if(loanAmount > (bankBalance * 2))
