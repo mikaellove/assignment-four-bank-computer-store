@@ -6,7 +6,7 @@
 
 ## Website
 ```sh
-mikaellove.github.io/assignment-four-bank-computer-store/
+https://mikaellove.github.io/bank-and-computer-store/
 
 ```
 
