@@ -1,7 +1,7 @@
-import { DataContainer } from "./data-container.js";
-import { WorkSection } from "./section-handlers/work-section-handler.js";
-import { BankSection } from "./section-handlers/bank-section-handler.js";
-import { ComputerDataHandler } from "./section-handlers/computer-data-handler.js"
+import { DataContainer } from "/src/data-container.js";
+import { WorkSection } from "/src/section-handlers/work-section-handler.js";
+import { BankSection } from "/src/section-handlers/bank-section-handler.js";
+import { ComputerDataHandler } from "/src/section-handlers/computer-data-handler.js"
 
 const dataContainer = new DataContainer();
 const workSection = new WorkSection(dataContainer);
