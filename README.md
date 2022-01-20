@@ -19,7 +19,7 @@ Install LiveServer extension in vs code.
 ## Usage
 
 ```sh
-Right click on the index.html file and open liveserver to run project the project locally.
+Right click on the index.html file and open liveserver to run the project locally.
 ```
 
 ## Author
